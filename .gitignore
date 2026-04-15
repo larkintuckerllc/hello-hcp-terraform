@@ -1,0 +1,26 @@
+# Local state files
+terraform.tfstate
+terraform.tfstate.backup
+terraform.tfstate.*.backup
+
+# Local variable files (may contain secrets)
+*.tfvars
+*.tfvars.json
+
+# Terraform working directory
+.terraform/
+
+# Terraform lock file is intentionally committed - do not ignore
+# .terraform.lock.hcl
+
+# Crash log files
+crash.log
+crash.*.log
+
+# Sensitive files
+*.pem
+*.key
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
