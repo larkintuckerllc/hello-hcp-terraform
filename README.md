@@ -1,5 +1,7 @@
 # HCP Terraform Learning Notes
 
+![Header](header.png)
+
 Notes from a hands-on investigation into HCP Terraform (formerly Terraform Cloud).
 
 The starting point is familiarity with running Terraform locally — these notes focus on what changes and what stays the same when moving to HCP Terraform.
