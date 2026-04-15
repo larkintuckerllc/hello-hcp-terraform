@@ -1,6 +1,6 @@
 # HCP Terraform Learning Notes
 
-Notes from a hands-on investigation into HCP Terraform (formerly Terraform Cloud), written in the context of the ALF squad's migration of the Managed GKE Clusters product.
+Notes from a hands-on investigation into HCP Terraform (formerly Terraform Cloud).
 
 The starting point is familiarity with running Terraform locally — these notes focus on what changes and what stays the same when moving to HCP Terraform.
 
@@ -31,7 +31,7 @@ HCP Terraform has three levels:
 
 **Organization** — the top level, corresponding to a company or team. All billing, SSO, and org-wide settings live here.
 
-**Project** — a grouping of workspaces within an org, used to organise workspaces and apply permissions at a higher level. Every org gets a Default project automatically. For a real team setup you would create a dedicated project per product, e.g. `managed-gke-clusters`.
+**Project** — a grouping of workspaces within an org, used to organize workspaces and apply permissions at a higher level. Every org gets a Default project automatically. For a real team setup you would create a dedicated project per product, e.g. `managed-gke-clusters`.
 
 **Workspace** — the core unit of work. Each workspace has its own state file, variables, run history, and permissions. In practice, teams typically create one workspace per environment:
 
@@ -112,7 +112,7 @@ Because `terraform plan` and `terraform apply` run on HCP Terraform's infrastruc
 
 3. **JSON service account key** — Set the key contents as a sensitive `GOOGLE_CREDENTIALS` environment variable in the workspace. Acceptable for experimentation only.
 
-> **Note for the ALF migration:** Long-lived JSON service account keys have historically been flagged as a security risk at Spotify. WIF or Dynamic Provider Credentials should be the approach used for production workspaces. Credential strategy should be resolved early in migration planning.
+> **Note:** Long-lived JSON service account keys are a security risk due to potential leakage. WIF or Dynamic Provider Credentials should be the approach used for production workspaces. Credential strategy should be resolved early in migration planning.
 
 When adding a JSON key as a workspace variable, the value must be compacted to a single line first:
 
@@ -217,10 +217,10 @@ Note: `.terraform.lock.hcl` is intentionally **not** ignored. This lock file pin
 
 ## Topics Not Covered — For Further Investigation
 
-The following HCP Terraform concepts were not covered in this session but are relevant to the ALF migration:
+The following HCP Terraform concepts were not covered in this session but are worth exploring:
 
 - **Variable sets** — define variables once at org or project level and share across multiple workspaces. Relevant if multiple workspaces need the same credentials.
-- **Private Registry** — hosting private Terraform modules within the org. Relevant if ALF publishes reusable GKE modules.
+- **Private Registry** — hosting private Terraform modules within the org. Relevant if publishing reusable modules.
 - **Sentinel / OPA policies** — policy-as-code enforcement between plan and apply, e.g. enforcing labelling standards or restricting resource types. A paid tier feature.
 - **Run triggers** — automatically trigger a run in one workspace when another completes. Useful for workspaces with infrastructure dependencies.
-- **Agents** — self-hosted HCP Terraform runners for accessing private networks, e.g. private GKE clusters. Likely relevant for the Managed GKE Clusters use case.
+- **Agents** — self-hosted HCP Terraform runners for accessing private networks, e.g. private GKE clusters.
