@@ -7,4 +7,8 @@ resource "google_storage_bucket" "this" {
   location = "US"
 
   force_destroy = false
+
+  labels = {
+    managed-by = "terraform"
+  }
 }
