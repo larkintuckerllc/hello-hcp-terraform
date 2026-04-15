@@ -164,7 +164,7 @@ Once a workspace is connected to a GitHub repo, the workflow is:
 
 ---
 
-## Safely Reorganising Terraform Configurations
+## Safely Reorganizing Terraform Configurations
 
 Renaming a resource in code — e.g. from `google_storage_bucket.this` to `google_storage_bucket.that` — without updating state causes Terraform to plan a destroy of the old resource and a create of the new one, even though nothing about the real infrastructure has changed.
 
