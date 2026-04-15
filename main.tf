@@ -2,7 +2,7 @@ provider "google" {
   project = "skillful-figure-459619-t4"
 }
 
-resource "google_storage_bucket" "this" {
+resource "google_storage_bucket" "that" {
   name     = "my-terraform-bucket-0"
   location = "US"
 
